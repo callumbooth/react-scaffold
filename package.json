@@ -1,35 +1,50 @@
 {
-	"name": "rs",
-	"displayName": "react-scaffold",
-	"description": "Scaffolding react components, the quick way",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.33.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onCommand:extension.createFunctional"
-	],
-	"main": "./extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "extension.createFunctional",
-				"title": "Create Functional React Component"
-			}
-		]
-	},
-	"scripts": {
-		"postinstall": "node ./node_modules/vscode/bin/install",
-		"test": "node ./node_modules/vscode/bin/test"
-	},
-	"devDependencies": {
-		"typescript": "^3.3.1",
-		"vscode": "^1.1.28",
-		"eslint": "^5.13.0",
-		"@types/node": "^10.12.21",
-		"@types/mocha": "^2.2.42"
-	}
+    "name": "rs",
+    "displayName": "react-scaffold",
+    "description": "Scaffolding react components, the quick way",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.33.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.createFunctional"
+    ],
+    "main": "./dist/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.createFunctional",
+                "title": "Create Functional React Component"
+            }
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "command": "extension.createFunctional"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "webpack --mode production",
+        "webpack": "webpack --mode development",
+        "webpack-dev": "webpack --mode development --watch"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.4.4",
+        "@babel/preset-env": "^7.4.4",
+        "@babel/preset-react": "^7.0.0",
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^10.12.21",
+        "babel-loader": "^8.0.5",
+        "babel-polyfill": "^6.26.0",
+        "eslint": "^5.13.0",
+        "typescript": "^3.3.1",
+        "vscode": "^1.1.28",
+        "webpack": "^4.31.0",
+        "webpack-cli": "^3.3.2"
+    }
 }
