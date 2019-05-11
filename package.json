@@ -1,5 +1,5 @@
 {
-    "name": "rs",
+    "name": "react-scaffold",
     "displayName": "react-scaffold",
     "description": "Scaffolding react components, the quick way",
     "version": "0.0.1",
@@ -10,20 +10,46 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.createFunctional"
+        "onCommand:reactScaffold.createFunctional",
+        "onCommand:reactScaffold.createClass"
     ],
     "main": "./dist/extension.js",
     "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "React Scaffold",
+            "properties": {
+                "reactScaffold.useJSX": {
+                    "type": "boolean",
+                    "default": true,
+                    "markdownDescription": "Choose if the file extension should be .js or .jsx"
+                },
+                "reactScaffold.includePropTypesDeclaration": {
+                    "type": "boolean",
+                    "default": false,
+                    "markdownDescription": "Choose if the generated file should import the prop-types package"
+                }
+            }
+        },
         "commands": [
             {
-                "command": "extension.createFunctional",
+                "command": "reactScaffold.createFunctional",
                 "title": "Create Functional React Component"
+            },
+            {
+                "command": "reactScaffold.createClass",
+                "title": "Create Class React Component"
             }
         ],
         "menus": {
             "explorer/context": [
                 {
-                    "command": "extension.createFunctional"
+                    "command": "reactScaffold.createFunctional",
+                    "when": "explorerResourceIsFolder"
+                },
+                {
+                    "command": "reactScaffold.createClass",
+                    "when": "explorerResourceIsFolder"
                 }
             ]
         }

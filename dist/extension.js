@@ -11112,6 +11112,28 @@ module.exports = __webpack_require__(/*! ./modules/_core */ "./node_modules/core
 
 /***/ }),
 
+/***/ "./src/boilerplates/classComponent.js":
+/*!********************************************!*\
+  !*** ./src/boilerplates/classComponent.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/index */ "./src/utils/index.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (function (name, config) {
+  var componentName = Object(_utils_index__WEBPACK_IMPORTED_MODULE_0__["createComponentName"])(name);
+  var imports = ["import React, { Component } from 'react'", config.includePropTypesDeclaration && "import PropTypes from 'prop-types'"].join('\n');
+  var component = "class ".concat(componentName, " extends Component {\n  render() {\n    return (\n      <div>\n        Lorem Ipsum\n      </div>\n    ) \n  }\n}");
+  var propTypes = config.includePropTypesDeclaration ? "".concat(componentName, ".propTypes = {\n\n}") : null;
+  var exportLine = "export default ".concat(componentName);
+  return [imports, component, propTypes, exportLine].join('\n\n');
+});
+
+/***/ }),
+
 /***/ "./src/boilerplates/functionalComponent.js":
 /*!*************************************************!*\
   !*** ./src/boilerplates/functionalComponent.js ***!
@@ -11121,12 +11143,172 @@ module.exports = __webpack_require__(/*! ./modules/_core */ "./node_modules/core
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (function (name) {
-  var firstChar = name.charAt(0).toUpperCase();
-  var componentName = firstChar + name.substr(1);
-  var fc = "import React from 'react';\n\nconst ".concat(componentName, " = () => {\n  return (\n    <div>\n      Lorem Ipsum\n    </div>\n  )\n}\n\nexport default ").concat(componentName);
-  return fc;
+/* harmony import */ var _utils_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/index */ "./src/utils/index.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (function (name, config) {
+  var componentName = Object(_utils_index__WEBPACK_IMPORTED_MODULE_0__["createComponentName"])(name);
+  var imports = ["import React from 'react'", config.includePropTypesDeclaration && "import PropTypes from 'prop-types'"].join('\n');
+  var component = "".concat(componentName, " = () => {\n  return (\n    <div>\n      Lorem Ipsum\n    </div>\n  )\n}");
+  var propTypes = config.includePropTypesDeclaration ? "".concat(componentName, ".propTypes = {\n\n}") : null;
+  var exportLine = "export default ".concat(componentName);
+  return [imports, component, propTypes, exportLine].join('\n\n');
 });
+
+/***/ }),
+
+/***/ "./src/create.js":
+/*!***********************!*\
+  !*** ./src/create.js ***!
+  \***********************/
+/*! exports provided: createFile */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFile", function() { return createFile; });
+/* harmony import */ var vscode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vscode */ "vscode");
+/* harmony import */ var vscode__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vscode__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fs */ "fs");
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! path */ "path");
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _boilerplates_functionalComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./boilerplates/functionalComponent */ "./src/boilerplates/functionalComponent.js");
+/* harmony import */ var _boilerplates_classComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./boilerplates/classComponent */ "./src/boilerplates/classComponent.js");
+/* harmony import */ var _utils_constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/constants */ "./src/utils/constants.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils */ "./src/utils/index.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+ //boilerplate files
+
+
+
+
+
+var config = vscode__WEBPACK_IMPORTED_MODULE_0__["workspace"].getConfiguration(_utils_constants__WEBPACK_IMPORTED_MODULE_5__["PLUGIN_NAME"]);
+
+var getName =
+/*#__PURE__*/
+function () {
+  var _ref = _asyncToGenerator(
+  /*#__PURE__*/
+  regeneratorRuntime.mark(function _callee() {
+    var options;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            //create prompt for the name of the file and validate the entry
+            options = {
+              ignoreFocusOut: true,
+              placeHolder: "ComponentName",
+              validateInput: _utils__WEBPACK_IMPORTED_MODULE_6__["validateName"],
+              prompt: "Please choose a component name"
+            };
+            _context.next = 3;
+            return vscode__WEBPACK_IMPORTED_MODULE_0__["window"].showInputBox(options);
+
+          case 3:
+            return _context.abrupt("return", _context.sent);
+
+          case 4:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function getName() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var createFile =
+/*#__PURE__*/
+function () {
+  var _ref2 = _asyncToGenerator(
+  /*#__PURE__*/
+  regeneratorRuntime.mark(function _callee2(type, selectedFolder) {
+    var validTypes, nameOrPath, fileExtention, filePath, fileName, fileToWrite, content, file;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            validTypes = [_utils_constants__WEBPACK_IMPORTED_MODULE_5__["TYPE_FUNCTIONAL"], _utils_constants__WEBPACK_IMPORTED_MODULE_5__["TYPE_CLASS"]];
+
+            if (!(validTypes.indexOf(type) === -1)) {
+              _context2.next = 3;
+              break;
+            }
+
+            return _context2.abrupt("return", null);
+
+          case 3:
+            _context2.next = 5;
+            return getName();
+
+          case 5:
+            nameOrPath = _context2.sent;
+
+            if (nameOrPath) {
+              _context2.next = 8;
+              break;
+            }
+
+            return _context2.abrupt("return", null);
+
+          case 8:
+            fileExtention = config.useJSX ? ".jsx" : ".js";
+            filePath = nameOrPath.split("/");
+            fileName = filePath[filePath.length - 1];
+            fileToWrite = path__WEBPACK_IMPORTED_MODULE_2___default.a.resolve(selectedFolder, nameOrPath + fileExtention);
+
+            if (!fs__WEBPACK_IMPORTED_MODULE_1___default.a.existsSync(fileToWrite)) {
+              _context2.next = 14;
+              break;
+            }
+
+            return _context2.abrupt("return", vscode__WEBPACK_IMPORTED_MODULE_0__["window"].showErrorMessage("File: '".concat(fileName, "' already exists")));
+
+          case 14:
+            switch (type) {
+              case _utils_constants__WEBPACK_IMPORTED_MODULE_5__["TYPE_FUNCTIONAL"]:
+                {
+                  content = Object(_boilerplates_functionalComponent__WEBPACK_IMPORTED_MODULE_3__["default"])(fileName, config);
+                }
+
+              case _utils_constants__WEBPACK_IMPORTED_MODULE_5__["TYPE_CLASS"]:
+                {
+                  content = Object(_boilerplates_classComponent__WEBPACK_IMPORTED_MODULE_4__["default"])(fileName, config);
+                }
+            }
+
+            fs__WEBPACK_IMPORTED_MODULE_1___default.a.writeFileSync(fileToWrite, content); //open and show new file
+
+            _context2.next = 18;
+            return vscode__WEBPACK_IMPORTED_MODULE_0__["workspace"].openTextDocument(fileToWrite);
+
+          case 18:
+            file = _context2.sent;
+            _context2.next = 21;
+            return vscode__WEBPACK_IMPORTED_MODULE_0___default.a.window.showTextDocument(file);
+
+          case 21:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function createFile(_x, _x2) {
+    return _ref2.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
@@ -11143,90 +11325,65 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deactivate", function() { return deactivate; });
 /* harmony import */ var vscode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vscode */ "vscode");
 /* harmony import */ var vscode__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vscode__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fs */ "fs");
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! path */ "path");
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! path */ "path");
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _utils_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/constants */ "./src/utils/constants.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils */ "./src/utils/index.js");
-/* harmony import */ var _boilerplates_functionalComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./boilerplates/functionalComponent */ "./src/boilerplates/functionalComponent.js");
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+/* harmony import */ var _create__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./create */ "./src/create.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
 
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
-
-
- //boilerplate files
-
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 
-var createFunctional =
-/*#__PURE__*/
-function () {
-  var _ref = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee(activeFolder) {
-    var options, nameOrPath, folder, fileToWrite, filePath, name, file;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            //create prompt for the name of the file and validate the entry
-            //console.log(activeFolder)
-            console.log(vscode__WEBPACK_IMPORTED_MODULE_0__["workspace"]);
-            return _context.abrupt("return", null);
 
-          case 5:
-            nameOrPath = _context.sent;
 
-            if (nameOrPath) {
-              _context.next = 8;
-              break;
-            }
 
-            return _context.abrupt("return", null);
 
-          case 8:
-            //get folder
-            folder = Object(_utils__WEBPACK_IMPORTED_MODULE_3__["getWorkspaceFolder"])(vscode__WEBPACK_IMPORTED_MODULE_0__["workspace"].workspaceFolders);
-            fileToWrite = path__WEBPACK_IMPORTED_MODULE_2___default.a.resolve(folder, nameOrPath + '.js');
-            filePath = nameOrPath.split('/');
-            name = filePath[filePath.length - 1];
-            fs__WEBPACK_IMPORTED_MODULE_1___default.a.writeFileSync(fileToWrite, Object(_boilerplates_functionalComponent__WEBPACK_IMPORTED_MODULE_4__["default"])(name)); //open and show new file
-
-            _context.next = 15;
-            return vscode__WEBPACK_IMPORTED_MODULE_0__["workspace"].openTextDocument(fileToWrite);
-
-          case 15:
-            file = _context.sent;
-            _context.next = 18;
-            return vscode__WEBPACK_IMPORTED_MODULE_0___default.a.window.showTextDocument(file);
-
-          case 18:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-
-  return function createFunctional(_x) {
-    return _ref.apply(this, arguments);
-  };
-}();
 /**
  * @param {vscode.ExtensionContext} context
  */
 
-
 function activate(context) {
-  console.log('Congratulations, your extension "rs" is now active!');
+  console.log("Congratulations, your extension \"".concat(_utils_constants__WEBPACK_IMPORTED_MODULE_2__["PLUGIN_NAME"], "\" is now active!"));
   /**
    * Creates a react functional component
    */
 
-  var disposable = vscode__WEBPACK_IMPORTED_MODULE_0___default.a.commands.registerCommand("extension.createFunctional", createFunctional);
-  context.subscriptions.push(disposable);
+  var createFunctionalCommand = vscode__WEBPACK_IMPORTED_MODULE_0___default.a.commands.registerCommand("reactScaffold.createFunctional", function (uri) {
+    var rootFolder = Object(_utils__WEBPACK_IMPORTED_MODULE_3__["getWorkspaceFolder"])(vscode__WEBPACK_IMPORTED_MODULE_0__["workspace"].workspaceFolders);
+
+    if (uri === undefined) {
+      //command was run from command pallete
+      return Object(_create__WEBPACK_IMPORTED_MODULE_4__["createFile"])(_utils_constants__WEBPACK_IMPORTED_MODULE_2__["TYPE_FUNCTIONAL"], rootFolder);
+    }
+
+    var selectedLocation = Object(_utils__WEBPACK_IMPORTED_MODULE_3__["getDifference"])(rootFolder, uri.fsPath);
+    var folders = selectedLocation.split("\\");
+    folders = folders.slice(1, folders.length);
+    return Object(_create__WEBPACK_IMPORTED_MODULE_4__["createFile"])(_utils_constants__WEBPACK_IMPORTED_MODULE_2__["TYPE_FUNCTIONAL"], path__WEBPACK_IMPORTED_MODULE_1___default.a.resolve.apply(path__WEBPACK_IMPORTED_MODULE_1___default.a, [rootFolder].concat(_toConsumableArray(folders))));
+  });
+  /**
+   * Creates a react functional component
+   */
+
+  var createClassCommand = vscode__WEBPACK_IMPORTED_MODULE_0___default.a.commands.registerCommand("reactScaffold.createClass", function (uri) {
+    var rootFolder = Object(_utils__WEBPACK_IMPORTED_MODULE_3__["getWorkspaceFolder"])(vscode__WEBPACK_IMPORTED_MODULE_0__["workspace"].workspaceFolders);
+
+    if (uri === undefined) {
+      //command was run from command pallete
+      return Object(_create__WEBPACK_IMPORTED_MODULE_4__["createFile"])(_utils_constants__WEBPACK_IMPORTED_MODULE_2__["TYPE_CLASS"], rootFolder);
+    }
+
+    var selectedLocation = Object(_utils__WEBPACK_IMPORTED_MODULE_3__["getDifference"])(rootFolder, uri.fsPath);
+    var folders = selectedLocation.split("\\");
+    folders = folders.slice(1, folders.length);
+    return Object(_create__WEBPACK_IMPORTED_MODULE_4__["createFile"])(_utils_constants__WEBPACK_IMPORTED_MODULE_2__["TYPE_CLASS"], path__WEBPACK_IMPORTED_MODULE_1___default.a.resolve.apply(path__WEBPACK_IMPORTED_MODULE_1___default.a, [rootFolder].concat(_toConsumableArray(folders))));
+  });
+  context.subscriptions.push(createFunctionalCommand, createClassCommand);
 } // this method is called when your extension is deactivated
 
 
@@ -11236,17 +11393,37 @@ function deactivate() {}
 
 /***/ }),
 
+/***/ "./src/utils/constants.js":
+/*!********************************!*\
+  !*** ./src/utils/constants.js ***!
+  \********************************/
+/*! exports provided: PLUGIN_NAME, TYPE_FUNCTIONAL, TYPE_CLASS */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PLUGIN_NAME", function() { return PLUGIN_NAME; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TYPE_FUNCTIONAL", function() { return TYPE_FUNCTIONAL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TYPE_CLASS", function() { return TYPE_CLASS; });
+var PLUGIN_NAME = 'reactScaffold';
+var TYPE_FUNCTIONAL = 'c';
+var TYPE_CLASS = 'class';
+
+/***/ }),
+
 /***/ "./src/utils/index.js":
 /*!****************************!*\
   !*** ./src/utils/index.js ***!
   \****************************/
-/*! exports provided: getWorkspaceFolder, validateName */
+/*! exports provided: getWorkspaceFolder, validateName, getDifference, createComponentName */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getWorkspaceFolder", function() { return getWorkspaceFolder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateName", function() { return validateName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDifference", function() { return getDifference; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createComponentName", function() { return createComponentName; });
 var getWorkspaceFolder = function getWorkspaceFolder(folders) {
   if (!folders) {
     return '';
@@ -11269,6 +11446,22 @@ var validateName = function validateName(name) {
   }
 
   return null;
+};
+var getDifference = function getDifference(a, b) {
+  var i = 0;
+  var j = 0;
+  var result = "";
+
+  while (j < b.length) {
+    if (a[i] != b[j] || i == a.length) result += b[j];else i++;
+    j++;
+  }
+
+  return result;
+};
+var createComponentName = function createComponentName(name) {
+  var firstChar = name.charAt(0).toUpperCase();
+  return firstChar + name.substr(1);
 };
 
 /***/ }),

@@ -3,17 +3,20 @@ import { createComponentName } from '../utils/index'
 export default (name, config) => {
   const componentName = createComponentName(name);
 
+
   const imports = [
-    "import React from 'react'",
+    "import React, { Component } from 'react'",
     config.includePropTypesDeclaration && "import PropTypes from 'prop-types'"
   ].join('\n');
   
-  const component = `${componentName} = () => {
-  return (
-    <div>
-      Lorem Ipsum
-    </div>
-  )
+  const component = `class ${componentName} extends Component {
+  render() {
+    return (
+      <div>
+        Lorem Ipsum
+      </div>
+    ) 
+  }
 }`
 
   const propTypes = config.includePropTypesDeclaration ? `${componentName}.propTypes = {
