@@ -36,7 +36,7 @@ export const createFile = async (type, selectedFolder) => {
 
     const fileExtention = config.useJSX ? ".jsx" : ".js";
 
-    const filePath = nameOrPath.split("/");
+    const filePath = nameOrPath.split(/[\\\/]/);
     const fileName = filePath[filePath.length - 1];
 
     let fileToWrite = path.resolve(selectedFolder, nameOrPath + fileExtention);
