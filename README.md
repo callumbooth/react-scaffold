@@ -30,6 +30,14 @@ This extension contributes the following settings:
 
 Users appreciate release notes as you update your extension.
 
-### 1.0.0-alpha.1
+### 1.0.0
 
 Initial release
+
+#### 1.0.1
+
+Updated README
+
+#### 1.0.2
+
+Fixes file creating not working on OSX
