@@ -39,3 +39,7 @@ Initial release
 #### 1.0.1
 
 Updated README
+
+#### 1.0.2
+
+Fixes file creating not working on OSX
