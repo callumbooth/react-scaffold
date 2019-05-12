@@ -3,7 +3,7 @@
     "publisher": "callum-booth",
     "displayName": "react-scaffold",
     "description": "Scaffolding react components, the quick way",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "mit",
     "author": {
         "name": "Callum Booth",
@@ -14,7 +14,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/eamodio/vscode-gitlens.git"
+        "url": "https://github.com/callumbooth/vscode-react-scaffold.git"
     },
     "keywords": [
         "react",
