@@ -1,8 +1,26 @@
 {
     "name": "react-scaffold",
+    "publisher": "callum-booth",
     "displayName": "react-scaffold",
     "description": "Scaffolding react components, the quick way",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "license": "mit",
+    "author": {
+        "name": "Callum Booth",
+        "email": "callum-booth@live.co.uk"
+    },
+    "bugs": {
+        "url": "https://github.com/callumbooth/vscode-react-scaffold/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/eamodio/vscode-gitlens.git"
+    },
+    "keywords": [
+        "react",
+        "scaffold",
+        "boilerplate"
+    ],
     "engines": {
         "vscode": "^1.33.0"
     },
