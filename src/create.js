@@ -42,7 +42,7 @@ export const createFile = async (type, selectedFolder) => {
     let fileToWrite = path.resolve(selectedFolder, nameOrPath + fileExtention);
 
     if (fs.existsSync(fileToWrite)) {
-        return window.showErrorMessage(`File: '${fileName}' already exists`);
+      return window.showErrorMessage(`File: ${fileName} already exists`);
     }
 
     let content;
