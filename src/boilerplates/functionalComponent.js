@@ -5,7 +5,7 @@ export default (name, config) => {
 
   const imports = [
     "import React from 'react'",
-    config.includePropTypesDeclaration && "import PropTypes from 'prop-types'"
+    config.includePropTypesDeclaration ? "import PropTypes from 'prop-types'" : ""
   ].join('\n');
   
   const component = `${componentName} = () => {
