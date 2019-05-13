@@ -49,9 +49,11 @@ export const createFile = async (type, selectedFolder) => {
     switch(type) {
       case TYPE_FUNCTIONAL: {
         content = getFunctionalComponent(fileName, config)
+        break
       }
       case TYPE_CLASS: {
         content = getClassComponent(fileName, config)
+        break
       }
     }
 
