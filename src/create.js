@@ -5,8 +5,10 @@ import path from "path";
 //boilerplate files
 import getFunctionalComponent from "./boilerplates/functionalComponent";
 import getClassComponent from "./boilerplates/classComponent";
+import getClassLifecycleComponent from './boilerplates/classComponentLifecycle';
+import getReducer from './boilerplates/reducer';
 
-import { PLUGIN_NAME, TYPE_CLASS, TYPE_FUNCTIONAL } from "./utils/constants";
+import { PLUGIN_NAME, TYPE_CLASS, TYPE_FUNCTIONAL, TYPE_CLASS_LIFECYCLE, TYPE_REDUCER } from "./utils/constants";
 import { validateName } from "./utils";
 
 const config = workspace.getConfiguration(PLUGIN_NAME);
@@ -23,7 +25,7 @@ const getName = async () => {
 };
 
 export const createFile = async (type, selectedFolder) => {
-    const validTypes = [TYPE_FUNCTIONAL, TYPE_CLASS];
+    const validTypes = [TYPE_FUNCTIONAL, TYPE_CLASS, TYPE_CLASS_LIFECYCLE, TYPE_REDUCER];
 
     if (validTypes.indexOf(type) === -1) {
         return null;
@@ -53,6 +55,14 @@ export const createFile = async (type, selectedFolder) => {
       }
       case TYPE_CLASS: {
         content = getClassComponent(fileName, config)
+        break
+      }
+      case TYPE_CLASS_LIFECYCLE: {
+        content = getClassLifecycleComponent(fileName, config)
+        break
+      }
+      case TYPE_REDUCER: {
+        content = getReducer(fileName, config)
         break
       }
     }

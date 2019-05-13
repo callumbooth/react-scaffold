@@ -29,7 +29,9 @@
     ],
     "activationEvents": [
         "onCommand:reactScaffold.createFunctional",
-        "onCommand:reactScaffold.createClass"
+        "onCommand:reactScaffold.createClass",
+        "onCommand:reactScaffold.createClassLifecycle",
+        "onCommand:reactScaffold.createReducer"
     ],
     "main": "./dist/extension.js",
     "contributes": {
@@ -52,11 +54,19 @@
         "commands": [
             {
                 "command": "reactScaffold.createFunctional",
-                "title": "Create Functional React Component"
+                "title": "Create functional React Component"
             },
             {
                 "command": "reactScaffold.createClass",
-                "title": "Create Class React Component"
+                "title": "Create class React Component"
+            },
+            {
+                "command": "reactScaffold.createClassLifecycle",
+                "title": "Create class React Component with lifecycle methods"
+            },
+            {
+                "command": "reactScaffold.createReducer",
+                "title": "Create redux reducer"
             }
         ],
         "menus": {
