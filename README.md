@@ -43,3 +43,7 @@ Updated README
 #### 1.0.2
 
 Fixes file creating not working on OSX
+
+#### 1.0.3
+
+Fixes functional component creating class component
