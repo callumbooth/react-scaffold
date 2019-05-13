@@ -8,7 +8,7 @@ export default (name, config) => {
     config.includePropTypesDeclaration ? "import PropTypes from 'prop-types'" : ""
   ].join('\n');
   
-  const component = `${componentName} = () => {
+  const component = `const ${componentName} = () => {
   return (
     <div>
       Lorem Ipsum
