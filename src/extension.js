@@ -4,12 +4,28 @@ import { PLUGIN_NAME, TYPE_CLASS, TYPE_FUNCTIONAL, TYPE_CLASS_LIFECYCLE, TYPE_RE
 import { getWorkspaceFolder } from "./utils";
 
 import { createFile } from './create';
+import { showFileTypePicker } from './wizard'
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
   console.log(`Congratulations, your extension "${PLUGIN_NAME}" is now active!`);
+
+  /**
+   * Create a quickpick for the different file types available
+   */
+
+   const createFileOfTypeCommand = vscode.commands.registerCommand(
+     "reactScaffold.createFileOfType",
+     (uri) => {
+      const rootFolder = getWorkspaceFolder(workspace.workspaceFolders)
+      const selectedLocation = uri ? uri.fsPath || rootFolder : rootFolder;
+
+      return showFileTypePicker(selectedLocation);
+     }
+   )
+
   /**
    * Creates a react functional component
    */
@@ -63,6 +79,7 @@ function activate(context) {
   );
 
   context.subscriptions.push(
+    createFileOfTypeCommand,
     createFunctionalCommand,
     createClassCommand,
     createClassLifecycleCommand,

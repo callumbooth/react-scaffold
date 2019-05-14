@@ -31,7 +31,8 @@
         "onCommand:reactScaffold.createFunctional",
         "onCommand:reactScaffold.createClass",
         "onCommand:reactScaffold.createClassLifecycle",
-        "onCommand:reactScaffold.createReducer"
+        "onCommand:reactScaffold.createReducer",
+        "onCommand:reactScaffold.createFileOfType"
     ],
     "main": "./dist/extension.js",
     "contributes": {
@@ -67,16 +68,16 @@
             {
                 "command": "reactScaffold.createReducer",
                 "title": "Create redux reducer"
+            },
+            {
+                "command": "reactScaffold.createFileOfType",
+                "title": "Create file..."
             }
         ],
         "menus": {
             "explorer/context": [
                 {
-                    "command": "reactScaffold.createFunctional",
-                    "when": "explorerResourceIsFolder"
-                },
-                {
-                    "command": "reactScaffold.createClass",
+                    "command": "reactScaffold.createFileOfType",
                     "when": "explorerResourceIsFolder"
                 }
             ]
