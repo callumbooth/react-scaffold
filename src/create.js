@@ -14,62 +14,62 @@ import { validateName } from "./utils";
 const config = workspace.getConfiguration(PLUGIN_NAME);
 
 const getName = async () => {
-    //create prompt for the name of the file and validate the entry
-    const options = {
-        ignoreFocusOut: true,
-        placeHolder: "ComponentName",
-        validateInput: validateName,
-        prompt: `Please choose a component name`
-    };
-    return await window.showInputBox(options);
+  //create prompt for the name of the file and validate the entry
+  const options = {
+    ignoreFocusOut: true,
+    placeHolder: "ComponentName",
+    validateInput: validateName,
+    prompt: `Please choose a component name`
+  };
+  return await window.showInputBox(options);
 };
 
 export const createFile = async (type, selectedFolder) => {
-    const validTypes = [TYPE_FUNCTIONAL, TYPE_CLASS, TYPE_CLASS_LIFECYCLE, TYPE_REDUCER];
+  const validTypes = [TYPE_FUNCTIONAL, TYPE_CLASS, TYPE_CLASS_LIFECYCLE, TYPE_REDUCER];
 
-    if (validTypes.indexOf(type) === -1) {
-        return null;
+  if (validTypes.indexOf(type) === -1) {
+    return null;
+  }
+
+  const nameOrPath = await getName();
+  if (!nameOrPath) {
+    return null;
+  }
+
+  const fileExtention = config.useJSX ? ".jsx" : ".js";
+
+  const filePath = nameOrPath.split(/[\\\/]/);
+  const fileName = filePath[filePath.length - 1];
+
+  let fileToWrite = path.resolve(selectedFolder, nameOrPath + fileExtention);
+  console.log(fileToWrite)
+  if (fs.existsSync(fileToWrite)) {
+    return window.showErrorMessage(`File: ${fileName} already exists`);
+  }
+
+  let content;
+  switch (type) {
+    case TYPE_FUNCTIONAL: {
+      content = getFunctionalComponent(fileName, config)
+      break
     }
-
-    const nameOrPath = await getName();
-    if (!nameOrPath) {
-        return null;
+    case TYPE_CLASS: {
+      content = getClassComponent(fileName, config)
+      break
     }
-
-    const fileExtention = config.useJSX ? ".jsx" : ".js";
-
-    const filePath = nameOrPath.split(/[\\\/]/);
-    const fileName = filePath[filePath.length - 1];
-
-    let fileToWrite = path.resolve(selectedFolder, nameOrPath + fileExtention);
-
-    if (fs.existsSync(fileToWrite)) {
-      return window.showErrorMessage(`File: ${fileName} already exists`);
+    case TYPE_CLASS_LIFECYCLE: {
+      content = getClassLifecycleComponent(fileName, config)
+      break
     }
-
-    let content;
-    switch(type) {
-      case TYPE_FUNCTIONAL: {
-        content = getFunctionalComponent(fileName, config)
-        break
-      }
-      case TYPE_CLASS: {
-        content = getClassComponent(fileName, config)
-        break
-      }
-      case TYPE_CLASS_LIFECYCLE: {
-        content = getClassLifecycleComponent(fileName, config)
-        break
-      }
-      case TYPE_REDUCER: {
-        content = getReducer(fileName, config)
-        break
-      }
+    case TYPE_REDUCER: {
+      content = getReducer(fileName, config)
+      break
     }
+  }
 
-    fs.writeFileSync(fileToWrite, content);
+  fs.writeFileSync(fileToWrite, content);
 
-    //open and show new file
-    const file = await workspace.openTextDocument(fileToWrite);
-    await vscode.window.showTextDocument(file);
+  //open and show new file
+  const file = await workspace.openTextDocument(fileToWrite);
+  await vscode.window.showTextDocument(file);
 };

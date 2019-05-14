@@ -31,10 +31,7 @@ function activate(context) {
    */
   const createFunctionalCommand = vscode.commands.registerCommand(
     "reactScaffold.createFunctional",
-    (uri) => {
-      const rootFolder = getWorkspaceFolder(workspace.workspaceFolders)
-      const selectedLocation = uri ? uri.fsPath || rootFolder : rootFolder;
-
+    (selectedLocation) => {
       return createFile(TYPE_FUNCTIONAL, selectedLocation);
     }
   );
@@ -44,10 +41,7 @@ function activate(context) {
    */
   const createClassCommand = vscode.commands.registerCommand(
     "reactScaffold.createClass",
-    (uri) => {
-      const rootFolder = getWorkspaceFolder(workspace.workspaceFolders)
-      const selectedLocation = uri ? uri.fsPath || rootFolder : rootFolder;
-
+    (selectedLocation) => {
       return createFile(TYPE_CLASS, selectedLocation);
     }
   );
@@ -57,10 +51,7 @@ function activate(context) {
    */
   const createClassLifecycleCommand = vscode.commands.registerCommand(
     "reactScaffold.createClassLifecycle",
-    (uri) => {
-      const rootFolder = getWorkspaceFolder(workspace.workspaceFolders)
-      const selectedLocation = uri ? uri.fsPath || rootFolder : rootFolder;
-
+    (selectedLocation) => {
       return createFile(TYPE_CLASS_LIFECYCLE, selectedLocation);
     }
   );
@@ -70,10 +61,7 @@ function activate(context) {
    */
   const createReducerCommand = vscode.commands.registerCommand(
     "reactScaffold.createReducer",
-    (uri) => {
-      const rootFolder = getWorkspaceFolder(workspace.workspaceFolders)
-      const selectedLocation = uri ? uri.fsPath || rootFolder : rootFolder;
-
+    (selectedLocation) => {
       return createFile(TYPE_REDUCER, selectedLocation);
     }
   );
