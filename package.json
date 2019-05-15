@@ -54,22 +54,6 @@
         },
         "commands": [
             {
-                "command": "reactScaffold.createFunctional",
-                "title": "Create functional React component"
-            },
-            {
-                "command": "reactScaffold.createClass",
-                "title": "Create class React component"
-            },
-            {
-                "command": "reactScaffold.createClassLifecycle",
-                "title": "Create class React component with lifecycle methods"
-            },
-            {
-                "command": "reactScaffold.createReducer",
-                "title": "Create Redux reducer"
-            },
-            {
                 "command": "reactScaffold.createFileOfType",
                 "title": "Create file..."
             }
