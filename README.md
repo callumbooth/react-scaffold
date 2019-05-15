@@ -10,15 +10,13 @@ Allows the creation of a react component with just a click of a button
 
 ### Command pallete
 
-1. Open the command pallete
-2. Type ```Create Functional React Component``` or ```Create Class React Component``` and hit enter
+1. Open the command pallete or right click on the folder you want to create, and choose ```Create file```
+2. Type ```Create file``` and hit enter
+3. Choose the type of file you wish to create from the list of options
 3. Enter the name of your file and component. This can either be just the name or a path
 
     e.g  ```MyComponent``` or ``path/to/MyComponent``
 
-### Explorer
-
-1. Right click on the folder you want to create 
 
 ## Extension Settings
 
@@ -36,14 +34,13 @@ Users appreciate release notes as you update your extension.
 
 Initial release
 
-#### 1.0.1
+#### fixes
 
-Updated README
+* Updated README
+* Fixes file creating not working on OSX
+* Fixes functional component creating class component
 
-#### 1.0.2
+### 1.1.0
 
-Fixes file creating not working on OSX
-
-#### 1.0.3
-
-Fixes functional component creating class component
+Simplified file creation process.
+More file types (class with lifecycle methods, Redux reducer)
