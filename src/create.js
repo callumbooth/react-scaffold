@@ -11,8 +11,6 @@ import getReducer from './boilerplates/reducer';
 import { PLUGIN_NAME, TYPE_CLASS, TYPE_FUNCTIONAL, TYPE_CLASS_LIFECYCLE, TYPE_REDUCER } from "./utils/constants";
 import { validateName } from "./utils";
 
-const config = workspace.getConfiguration(PLUGIN_NAME);
-
 const getName = async () => {
   //create prompt for the name of the file and validate the entry
   const options = {
@@ -26,6 +24,8 @@ const getName = async () => {
 
 export const createFile = async (type, selectedFolder) => {
   const validTypes = [TYPE_FUNCTIONAL, TYPE_CLASS, TYPE_CLASS_LIFECYCLE, TYPE_REDUCER];
+
+  const config = workspace.getConfiguration(PLUGIN_NAME);
 
   if (validTypes.indexOf(type) === -1) {
     return null;
@@ -42,7 +42,7 @@ export const createFile = async (type, selectedFolder) => {
   const fileName = filePath[filePath.length - 1];
 
   let fileToWrite = path.resolve(selectedFolder, nameOrPath + fileExtention);
-  console.log(fileToWrite)
+
   if (fs.existsSync(fileToWrite)) {
     return window.showErrorMessage(`File: ${fileName} already exists`);
   }
