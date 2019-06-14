@@ -44,3 +44,7 @@ Initial release
 
 Simplified file creation process.
 More file types (class with lifecycle methods, Redux reducer)
+
+### 1.1.1
+
+Vulnerability fix
